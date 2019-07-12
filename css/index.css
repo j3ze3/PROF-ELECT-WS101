@@ -87,47 +87,11 @@ padding-left: 23%;
 	padding: 5px 5px 5px 5px;
 }
 
-#education{
-float:left; 
-width: 40%
-}
-
-#experience{
-float:right; 
-width: 50%
-}
 
 a{
 
 text-decoration: none;
-    font-size: 20px;
+	font-size: 20px;
+	font-family: verdana;
 color:#baf1d8;
-}
-
-#certification{
-
-	float: left;
-}
-
-#skills{
-
-float: right;
-width: 50%
-}
-
-#footer{
-	clear: both;
-	font-size: 15px;
-	width: 100%;
-	background: linear-gradient(to top ,#383c5f
- ,grey);
-text-align: center;
-padding-bottom: 10px;
-padding-top: 5px;
-}
-
-#footer h3{
-	color: white;
-	margin: 0px;
-
 }
