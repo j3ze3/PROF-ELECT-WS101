@@ -38,6 +38,13 @@ position: absolute;
 
 }
 
+#log-form{
+	margin-left: auto;
+	margin-right: auto;
+
+}
+
+
 #nav ul{
 	margin:0px;
 	padding: 0px;
@@ -87,9 +94,9 @@ color:#baf1d8;
 	font-size: 20px;
 }
 
-#prof{
-	padding-top: 30px;
-width: 200px;
-height: 200px;
+.log-form{
+	margin-top: 150px;
+	padding-left: 30%;
+
 }
 
