@@ -1,35 +1,138 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Index Page!!</title>
-
-	<link rel="stylesheet" type="text/css" href="assets/css/index.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Material</title>
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="./assets/css/materialize.min.css">
+    <!-- Material Font -->
+    <link rel="stylesheet" href="./assets/css/material-font.css">
+    <!-- Mobile Support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" href="./assets/css/login.css">
 </head>
-<body>
-<div id="container">
+ <body>
 
-<div id="nav">
-<ul>
-		<li><a class="current" href="index.html">INDEX</a></li>
-		<li><a href="about.html">ABOUT</a></li>
-		<li><a href="login.html">LOGIN</a></li>
 
-	</ul>
-	
+  
+
+  <div class="container">
+
+
+      <!--NAVIGATION-->
+      <nav>
+    <div class="nav-wrapper grey darken-2">
+      <ul>
+       <ul class="left hide-on-med-and-down">
+        <li><a href="./Index.html">&nbsp&nbspHome&nbsp&nbsp</a></li>
+        <li class="active"><a href="./Profile.html">&nbsp&nbspProfile&nbsp&nbsp</a></li>
+        <li><a href="Blog.html">&nbsp&nbsp&nbspBlog&nbsp&nbsp&nbsp&nbsp</a></li>
+      </ul> 
+
+
+
+      <ul class="right hide-on-med-and-down">
+       <li><nav>
+      <form>
+        <div class="right input-field grey">
+          <input id="search" placeholder="Search" type="search" required>
+          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+          <i class="material-icons">close</i>
+        </div>
+      </form>
+    </nav></li>
+        <li><a href="#login" class="waves-effect waves-light   modal-trigger"><i class="material-icons right">fingerprint</i>&nbsp&nbsp&nbsp&nbspLogin&nbsp&nbsp&nbsp</a>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+
+  <!--NAVIGATION-->
+
+
+  <!--Image Slider-->
+
+  <div class="slider grey darken-1">
+    <ul class="slides">
+      <li>
+        <img src="../Material/assets/img/jz1.jpg">   
+      </li>
+      <li>
+        <img src="../Material/assets/img/jz2.jpg"> 
+      </li>
+      <li>
+        <img src="../Material/assets/img/jz3.jpg"> 
+      </li>
+      <li>
+        <img src="../Material/assets/img/jz4.jpg">
+      </li>
+    </ul>
+  </div>
+
+<!--Image Slider-->
+
+
+<!-- Footer -->
+<footer class="grey darken-2 page-footer">
+          <div class="grey darken-2 footer-copyright">
+            <div class="container">
+            © 2014 Copyright Allrights Reserved.
+            <a class="grey-text text-lighten-4 right" href="#!">Jz Ambal</a>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+ 
+ <!-- Footer -->
+
+ 
+<!--  Modal -->
+
+<div id="login" class="modal ">
+  <h5 class="modal-close">&#10005;</h5>
+  <div class="modal-content center">
+    <h4>Login Form</h4>
+    <br>
+
+    <form action="#">
+
+      <div class="input-field">
+        <i class="material-icons prefix">person</i>
+        <input type="text" id="name">
+        <label for="name">Username</label>
+      </div>
+      <br>
+
+      <div class="input-field">
+        <i class="material-icons prefix">lock</i>
+        <input type="password" id="pass">
+        <label for="pass">Password</label>
+      </div>
+      <br>
+
+      <div class="left" style="margin-left:20px;">
+         <label>
+        <input type="checkbox"/>
+        <span>Remember Me</span>
+      </label>
+
+      </div>
+      <br>
+      
+      <input type="submit" value="Login" class="btn btn-large">
+      
+    </form>
+  </div>
 </div>
+<!--  Modal -->
 
-<div id="contents">
-	
-<h1>Quote</h1>
-<hr>
-<p style="color:white;font-size:40px;">"You can only see what i choose to show, there's so much more you just dont know!!</p>
-
-
-
-
-</div>
-
-
-</div>
-</body>
+    <!-- Material JS -->
+    <script src="./assets/js/materialize.min.js"></script>
+    <script src=./assets/js/js.js></script>
+   
+  </body>
 </html>
