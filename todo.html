@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-    <script src="./assets/js/vue.js"></script>
     <head>
         <meta charset="UTF-8">
         <title>TODO LIST</title>
@@ -46,56 +45,12 @@
     
       </nav>
 
-    <div id="app" class="">
-		<div id="header">
-			<nav>
-				<div class="nav-wrapper grey darken-3">
-					<div class="row">
-						<div class="col s12">
-							<a href="#" class="brand-logo center">TODO LIST</a>
-						</div>			
-					</div>
-				</div>
-			</nav>
-			<ul id="tabs-swipe" class="tabs center z-depth-1">
-				<li class="tab active"><a href="#tab-tasks">tasks</a></li>
-			  	<li class="tab"><a href="#tab-completed">Completed</a></li>
-			</ul>
-		</div>
-		<div class="white container">
-			<div id="tab-tasks">
-				    <div class="input-field">
-				        <input onfocus="this.value=''" v-model="itemName" placeholder="ENTER TODO HERE" @keydown.enter="addToList()">
-				    </div>
-				<div class="collection">
-					<uncompleted
-						v-for="(item, index) in items"
-						v-if="!item.done"
-						v-bind:text="item.text"
-						v-bind:done="item.done"
-						v-bind:index="index"
-						v-on:act-remove="removeFromList"
-						v-on:act-update="updateStatus"
-					></uncompleted>
-				</div>
-			</div>
-			<div id="tab-completed">
-				<div class="collection">
-					<completed
-					v-for="(item, index) in items"
-					v-if="item.done"
-					v-bind:text="item.text"
-					v-bind:done="item.done"
-					v-bind:index="index"
-					v-on:act-remove="removeFromList"
-					v-on:act-update="updateStatus"
-					></completed>
-				</div>
-			</div>
-		</div>
-		
-	</div>
-	
+
+
+
+
+
+
 
 <!--  Modal -->
 
@@ -137,8 +92,43 @@
   </div>
   <!--  Modal -->
 	
-    
-    <!-- Footer -->
+  <main id="app" class="container">
+        
+	<h3>TODO LIST</h3>
+
+	<fieldset>
+		<form class="row" @submit.prevent="addTask(title)">
+			<div class="input-field col m6 offset-m3">
+				<input id="taskTitle" type="text" v-model="title">
+			</div>
+			<div class="col m4 offset-m5">
+				<button type="submit" class="btn-floating btn-large waves-effect waves-light blue">
+					<i class="material-icons">add</i></button>
+			</div>
+		</form>
+
+		<p>{{ remaining() }} / {{ tasks.length }}</strong> task<span v-if="remaining() > 1">s</span> remaining.</p>
+		
+		<ul class="collection">
+			<li class="collection-item" v-for="(task, index) in tasks">
+				<label :for="'t_'+ (index + 1)">
+				  <input type="checkbox" v-model="task.isDone" :id="'t_'+ (index + 1)">
+				  <span>{{ task.title }}</span>
+				</label>
+				<a href="#" class="link-delete" title="Delete" @click="deleteTask(index)">
+					<i class="small material-icons">delete_forever</i>
+				</a>
+			</li>
+		</ul>
+
+	</fieldset>
+
+</main>
+<br>
+
+
+
+     <!-- Footer -->
 
 <footer class="grey darken-2 page-footer">
     <div class="grey darken-2 footer-copyright">
@@ -148,119 +138,49 @@
       </div>
     </div>
   </footer>
-
-<!-- Footer -->
 </div>
-<!-- Materialize initializatin -->
-	<script src="./assets/js/jq.js"></script>
-    <script>
-        $(document).ready(function(){
-          $('.tabs').tabs({
-          	// swipeable : true
-          });
-        });
-    </script>
+<!-- Footer -->
+   
 
-<!-- Vue starts here! -->
-	<script>
-		Vue.component('uncompleted', {
-			props: ['text', 'done', 'index', ],
-			template: `
-				<div class="collection-item">
-					<label>
-				    	<input id="checkbox" type="checkbox" v-on:click="$emit('act-update', index)">
-				        <span>{{text}}</span>
-				    </label>
-				    <div v-on:click="$emit('act-remove', index)" class="secondary-content">
-						<i class="material-icons red-text">close</i>
-					</div>
-				</div>				
-			`
-		})
-		Vue.component('completed', {
-			props: ['text', 'done', 'index'],
-			template: `
-				<div class="collection-item">
-					<label>
-				    	<input id="checkbox" type="checkbox" checked="unchecked" v-on:click="$emit('act-update', index)">
-				        <span>{{text}}</span>
-				    </label>
-				    <div v-on:click="$emit('act-remove', index)" class="secondary-content">
-						<i class="material-icons red-text">close</i>
-					</div>
-				</div>
-			`
-		})
-		var app = new Vue({
-			el: '#app',
-			data: {
-				itemName: '',
-				checked: '',
-				showCompleted: true,
-				items: [
-					{text: 'Assignment Barro', done: true},
-					{text: 'Assignment Sumampan', done: true},
-					{text: 'NodeJS', done: false},
-				]
-			},
-			methods: {
-				addToList() {
-					// var format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
-					// if (format.test(this.itemName)) {
-					// 	alert("You can't enter special characters");
-					// 	this.itemName = '';
-					// 	return;
-					// }
-					if (this.itemName.length > 30) {
-						alert("You can't enter more than 30 characters");
-						this.itemName = '';
-						return;
-					}
-					if (this.itemName == '') {
-						alert("Please enter something");
-						this.itemName = '';
-						return;
-					} 
-					else {
-						let temp = {
-							text: this.itemName,
-							done: false
-						};
-						this.items.splice(0, 0, temp);
-						this.itemName = '';
-					}
-				},
-				removeFromList(index) {
-					this.items.splice(index, 1);
-				},
-				updateStatus(index) {
-					let oldStatus = this.items[index].done;
-					this.items[index].done = !oldStatus;
-				},
-				toggleCompleted() {
-					var s = document.getElementById("completed-switch").style;
-					console.log(s.display)
-				}
-			},
-			mounted() {
-				console.log("App mounted")
-				if (localStorage.getItem('items')) this.items = JSON.parse(localStorage.getItem('items'));
-			},
-			watch: {
-				items: {
-					handler() {
-						console.log('Items changed!');
-						localStorage.setItem('items', JSON.stringify(this.items));
-					},
-					deep: true,
-				},
-			},
-		})
-    </script>
+
     
-    <!-- Material JS -->
-    <script src="./assets/js/materialize.min.js"></script>
-    <script src=./assets/js/js.js></script>
+   <!-- Material JS -->
+<script src="./assets/js/materialize.min.js"></script>
+<script src=./assets/js/js.js></script>
+<script>
+new Vue({
+	el: 'main#app',
+	data: {
+		tasks: [
+			{title: "Barro Assignment", isDone: false},
+			{title: "Github Todo List Push", isDone: true}
+		],
+		title : ""
+	},
+
+	methods: {
+		remaining: function () {
+			var remains = 0;
+			this.tasks.forEach(function (task) {
+				if (task.isDone === false) {
+					remains++;
+				}
+			});
+			return remains;
+		},
+
+		deleteTask: function (index) {
+			Vue.delete(this.tasks, index);
+		},
+
+		addTask: function (title) {
+			if (title !== "") {
+				Vue.set(this.tasks, this.tasks.length, {title, isDone: false});
+			}
+		}
+	}
+});
+</script>
 </body>
 
 </html>
